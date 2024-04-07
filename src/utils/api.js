@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_KEY = process.REACT_APP_API_KEY
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const api = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
@@ -10,6 +10,7 @@ const api = axios.create({
   }
 });
 
+export default api
 
 // 요청 인터셉터 추가하기
 axios.interceptors.request.use(function (config) {
@@ -31,5 +32,3 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error);
 });
 
-
-export default api

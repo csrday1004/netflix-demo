@@ -38,6 +38,7 @@ function AppLayout() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      {/* 하위 라우터를 보여주려면 Outlet 써야댐 */}
       <Outlet/>
     </div>
   );

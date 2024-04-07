@@ -7,18 +7,22 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 //npm i react-bootstrap bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-//npm i axios
 //npm i @tanstack/react-query
+import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
 //npm i @tanstack/react-query-devtools
 
+//npm i axios
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const queryClient = new QueryClient()
+
 root.render(
+  <QueryClientProvider client={queryClient}>
   <BrowserRouter>
     <App />
   </BrowserRouter>
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
