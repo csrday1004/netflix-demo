@@ -14,7 +14,7 @@ const Banner = () => {
     return <Alert variant="danger">{error.message}</Alert>;
   }
 
-  return <div className="banner" style={{backgroundImage:"url("+`https://media.themoviedb.org/t/p/w533_and_h300_bestv2/${data?.results[0].poster_path}`+")"}}
+  return <div className="banner" style={{backgroundImage:`url(https://media.themoviedb.org/t/p/w533_and_h300_bestv2/${data?.results[0].poster_path})`}}
   >
 
 <div className="banner-text-area">

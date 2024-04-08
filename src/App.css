@@ -3,4 +3,6 @@
   background-color: black;
   color: white;
   min-height: 100vh;
+  overflow: hidden;
+  padding-bottom: 100px;
 }
