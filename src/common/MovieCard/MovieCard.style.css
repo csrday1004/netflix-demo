@@ -1,16 +1,19 @@
 .movie-card{
-  width: 150px;
-  height: 250px;
+  width: 100px;
+  height: 180px;
   cursor: pointer;
   transition:0.5s;
   border-radius: 15px;
   background-position: center;
+  font-size: 12px;
 }
 
 
 .overlay{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
   width: 100%;
   height: 100%;
@@ -29,13 +32,16 @@
 }
 
 .movie-card:hover{
+
   transform: scale(1.3) translateZ(20px);
   z-index: 2;
 }
 
 @media screen and (min-width: 768px) {
   .movie-card{
+
     width: 220px;
     height: 330px;
+    font-size: 18px;
   }
 }
