@@ -6,7 +6,7 @@ import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 const MovieCard = ({ movie, index }) => {
 
   const {data:genreData}=useMovieGenreQuery()
-  console.log(genreData)
+  // console.log(genreData)
   //Array(19)
     //0:{id: 28, name: '액션'}
     //1:{id: 12, name: '모험'}...
@@ -22,7 +22,7 @@ const MovieCard = ({ movie, index }) => {
       //그 객체에서 name 값만 반환함
       return genreObj.name
     })
-    
+
     return genreNameList
   }
 
@@ -51,7 +51,7 @@ const MovieCard = ({ movie, index }) => {
             }}
           >
             {showGenre(movie.genre_ids).map((id, index) => {
-              return <Badge bg="danger">{id}</Badge>;
+              return <Badge bg="danger" key={index}>{id}</Badge>;
             })}
           </div>
 

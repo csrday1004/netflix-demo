@@ -24,6 +24,8 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  overflow-wrap: break-word;
+  /* word-wrap: break-word; */
 }
 
 .banner-text-area>*{
