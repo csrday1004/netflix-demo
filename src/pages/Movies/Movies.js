@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import { useSearchParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
@@ -27,10 +27,13 @@ const Movies = () => {
     page,
   });
   const handlePageClick = ({ selected }) => {
+    console.log('selected',selected)
     setPage(selected + 1);
   };
-  console.log("ddd", data);
 
+  console.log("ddd", data);
+  console.log('page', page)
+  
   if (isLoading) {
     return (
       <div className="spinner-area">
@@ -57,7 +60,7 @@ const Movies = () => {
             {data?.results.map((movie, index) => {
               return (
                 <Col xs={4} key={index}>
-                  <MovieCard movie={movie} />
+                  <MovieCard movie={movie} index={false} />
                 </Col>
               );
             })}
@@ -68,7 +71,7 @@ const Movies = () => {
               onPageChange={handlePageClick}
               pageRangeDisplayed={2}
               marginPagesDisplayed={1}
-              pageCount={data.total_pages} //전체페이지 수
+              pageCount={data?.total_pages} //전체페이지 수
               previousLabel="<previous"
               pageClassName="page-item"
               pageLinkClassName="page-link"
