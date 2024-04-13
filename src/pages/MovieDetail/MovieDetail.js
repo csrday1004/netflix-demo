@@ -10,13 +10,11 @@ import { useTrailerQuery } from "../../hooks/useTrailer";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 import Badge from "react-bootstrap/Badge";
 import { useRecommendQuery } from "../../hooks/useRecommend";
-import MovieCard from "../../common/MovieCard/MovieCard";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { responsive2 } from "../../constants/responsive2";
 import MovieSlider from "../../common/MovieSlider/MovieSlider";
 
-window.scrollTo(0, 0);
+
 
 const MovieDetail = () => {
   const [moreData, setMoreData] = useState([]);
@@ -85,6 +83,9 @@ const MovieDetail = () => {
     } else {
       setTrailerKey("");
     }
+
+    window.scrollTo(0, 0);
+    
   }, [movie_id, isLoading, trailerDataIsLoading, recommendDataIsLoading]);
 
   // console.log('트레일러 키', trailerKey)

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const MovieCard = ({ movie, index }) => {
-  console.log('무비카드에서 받은 값들', movie)
+  // console.log('무비카드에서 받은 값들', movie)
   const navigate = useNavigate()
 
   const { data: genreData } = useMovieGenreQuery();

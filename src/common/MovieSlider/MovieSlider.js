@@ -21,7 +21,7 @@ const MovieSlider = ({ title, movies, responsive, rating }) => {
         autoPlaySpeed={5000}
       >
         {movies.map((movie, index) => {
-          console.log('캐러셀에서 맵 돌린 각각의 데이터',movie)
+          // console.log('캐러셀에서 맵 돌린 각각의 데이터',movie)
           return <MovieCard movie={movie} index={rating?index:null} key={index} />;
         })}
       </Carousel>
