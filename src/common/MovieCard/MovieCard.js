@@ -44,7 +44,7 @@ const MovieCard = ({ movie, index }) => {
       }}
     >
       <div className="overlay">
-        {index ? <div>{index + 1}위</div> : <div></div>}
+        {index===null ? <div></div> : <div>{index + 1}위</div>}
         <div>{movie.title}</div>
         <div>{Number(movie.vote_average).toFixed(1)}/10점</div>
         <div>{movie.popularity}</div>

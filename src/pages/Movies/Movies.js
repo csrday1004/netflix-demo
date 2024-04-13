@@ -9,6 +9,8 @@ import Col from "react-bootstrap/Col";
 import MovieCard from "../../common/MovieCard/MovieCard";
 import ReactPaginate from "react-paginate";
 import Button from "react-bootstrap/Button";
+import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
+import "./Movies.style.css";
 
 // 경로 2가지
 // navbar에서 클릭해 온 경우 => popular Movie들 보여주기
@@ -24,12 +26,30 @@ const Movies = () => {
   const keyword = query.get("q");
   const [page, setPage] = useState(1);
   const [sortedData, setSortedData] = useState([]);
-  const [sortBtn, setSortBtn] = useState(localStorage.getItem("sortState") !== "false");
+  const [sortBtn, setSortBtn] = useState(
+    localStorage.getItem("sortState") !== "false"
+  );
+  const [selectGenreBtn, setSelectedGenreBtn] = useState(
+    localStorage.getItem("genreState") === null
+      ? null
+      : Number(localStorage.getItem("genreState"))
+  );
+  const [selectGenreId, setSelectedGenreId] = useState(
+    localStorage.getItem("genreIdState") === null
+      ? null
+      : Number(localStorage.getItem("genreIdState"))
+  );
+  // console.log(selectGenreId);
+  const [genreFilterMenu, setGenreFilterMenu] = useState(false);
 
   const { data, isLoading, isError, error } = useSearchMovieQuery({
     keyword,
     page,
   });
+
+  const { data: genres } = useMovieGenreQuery();
+  console.log(genres);
+
   // console.log(data)
 
   useEffect(() => {
@@ -47,7 +67,7 @@ const Movies = () => {
         setSortedData(sorting);
       }
     }
-  }, [isLoading, sortBtn]);
+  }, [isLoading, sortBtn, selectGenreBtn]);
 
   const handlePageClick = ({ selected }) => {
     console.log("selected", selected);
@@ -73,11 +93,8 @@ const Movies = () => {
   return (
     <Container>
       <Row>
-        <Col className="p-5" lg={5} xs={12}>
-          <div
-            className="정렬하기"
-            style={{ display: "flex", gap: "10px", justifyContent: "center" }}
-          >
+        <Col className="filter-area" lg={5} xs={12}>
+          <div className="정렬하기 btn-group">
             <Button
               onClick={() => {
                 localStorage.setItem("sortState", true);
@@ -85,7 +102,7 @@ const Movies = () => {
               }}
               variant={sortBtn ? "danger" : "outline-danger"}
             >
-              재미순
+              인기순
             </Button>
             <Button
               onClick={() => {
@@ -94,10 +111,52 @@ const Movies = () => {
               }}
               variant={!sortBtn ? "danger" : "outline-danger"}
             >
-              노잼순
+              그닥순
+            </Button>
+            {/* 장르메뉴 여는 버튼 */}
+            <Button
+              onClick={() => {
+                setGenreFilterMenu(true);
+              }}
+              variant={selectGenreBtn === null ? "outline-danger" : "danger"}
+            >
+              {genres?(genres[selectGenreBtn]?.name ?? "장르선택"):'장르선택'}
             </Button>
           </div>
-          <div className="장르필터"></div>
+          {/* 장르필터~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
+          {/* 장르 버튼을 누르면 장르의 아이디를 스테이트에 저장한다 */}
+          {/* 저장된 장르 아이디를 가진 영화들만 보여준다 */}
+          {genreFilterMenu ? (
+            <div className="장르필터 btn-group">
+              {genres?.map((e, index) => {
+                return (
+                  <Button
+                    className="genre-btn"
+                    onClick={() => {
+                      setGenreFilterMenu(false);
+                      if (selectGenreBtn === index) {
+                        localStorage.removeItem("genreState");
+                        localStorage.removeItem("genreIdState");
+                        setSelectedGenreId(null);
+                        setSelectedGenreBtn(null);
+                        return;
+                      }
+                      localStorage.setItem("genreState", index.toString());
+                      localStorage.setItem("genreIdState", e.id.toString());
+                      setSelectedGenreId(e.id);
+                      setSelectedGenreBtn(index);
+                    }}
+                    variant={
+                      selectGenreBtn === index ? "danger" : "outline-danger"
+                    }
+                    key={index}
+                  >
+                    {e.name}
+                  </Button>
+                );
+              })}
+            </div>
+          ) : null}
         </Col>
         <Col
           className=""
@@ -112,11 +171,28 @@ const Movies = () => {
           <Row className="mb-5">
             {(sortedData.length > 0 ? sortedData : data?.results).map(
               (movie, index) => {
-                return (
-                  <Col className="mb-4" xs={4} key={index}>
-                    <MovieCard movie={movie} index={false} />
-                  </Col>
-                );
+                // 장르필터에 해당되는 것만 보여주자
+                // console.log("장르확인용", movie);
+                // 만약 필터가 아무것도 선택되어있지 않으면
+                if (selectGenreBtn === null) {
+                  return (
+                    <Col className="mb-4" xs={4} key={index}>
+                      <MovieCard movie={movie} index={false} />
+                    </Col>
+                  );
+                  // 필터가 선택되어 있으면
+                } else {
+                  // 만약 장르필터에 선택된 장르아이디가 이 영화 장르 리스트에 있으면
+                  if (movie.genre_ids.includes(selectGenreId)) {
+                    return (
+                      <Col className="mb-4" xs={4} key={index}>
+                        <MovieCard movie={movie} index={false} />
+                      </Col>
+                    );
+                  }
+                  // 없으면
+                  return null;
+                }
               }
             )}
           </Row>
