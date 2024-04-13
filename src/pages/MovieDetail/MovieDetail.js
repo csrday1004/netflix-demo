@@ -16,6 +16,8 @@ import "react-multi-carousel/lib/styles.css";
 import { responsive2 } from "../../constants/responsive2";
 import MovieSlider from "../../common/MovieSlider/MovieSlider";
 
+window.scrollTo(0, 0);
+
 const MovieDetail = () => {
   const [moreData, setMoreData] = useState([]);
   const [clicked, setClicked] = useState();
