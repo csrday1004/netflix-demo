@@ -20,7 +20,7 @@
 
 ul {
   list-style: none; /* 기본 목록 마커 제거 */
-  padding: 0; /* 내부 패딩 제거 */
+  padding: 0 !important; /* 내부 패딩 제거 */
   margin: 0; /* 외부 여백 제거 */
   display: flex; /* Flexbox 레이아웃 사용 */
 }

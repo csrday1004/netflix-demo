@@ -203,7 +203,7 @@ const Movies = () => {
               pageRangeDisplayed={2}
               marginPagesDisplayed={1}
               pageCount={data?.total_pages} //전체페이지 수
-              previousLabel="<previous"
+              previousLabel="<pre"
               pageClassName="page-item"
               pageLinkClassName="page-link"
               previousClassName="page-item"
