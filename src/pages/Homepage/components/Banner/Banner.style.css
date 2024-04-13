@@ -4,6 +4,9 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .banner::before{
@@ -25,9 +28,15 @@
   justify-content: center;
   height: 100%;
   overflow-wrap: break-word;
-  /* word-wrap: break-word; */
 }
 
 .banner-text-area>*{
   z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .banner{
+    justify-content: left;
+    align-items: center;
+  }
 }
