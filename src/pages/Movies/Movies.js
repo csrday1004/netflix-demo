@@ -186,7 +186,7 @@ const Movies = () => {
                   if (movie.genre_ids.includes(selectGenreId)) {
                     return (
                       <Col className="mb-4" xs={4} key={index}>
-                        <MovieCard movie={movie} index={false} />
+                        <MovieCard movie={movie} index={null} />
                       </Col>
                     );
                   }

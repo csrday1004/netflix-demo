@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 const MovieCard = ({ movie, index }) => {
   // console.log('무비카드에서 받은 값들', movie)
   const navigate = useNavigate()
-
   const { data: genreData } = useMovieGenreQuery();
   // console.log(genreData)
   //Array(19)
@@ -44,7 +43,7 @@ const MovieCard = ({ movie, index }) => {
       }}
     >
       <div className="overlay">
-        {index===null ? <div></div> : <div>{index + 1}위</div>}
+        {index===0?<div>{index + 1}위</div>:(index?<div>{index + 1}위</div>:<div></div>)}
         <div>{movie.title}</div>
         <div>{Number(movie.vote_average).toFixed(1)}/10점</div>
         <div>{movie.popularity}</div>
