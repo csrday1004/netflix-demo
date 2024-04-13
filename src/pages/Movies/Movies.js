@@ -48,7 +48,7 @@ const Movies = () => {
   });
 
   const { data: genres } = useMovieGenreQuery();
-  console.log(genres);
+  // console.log(genres);
 
   // console.log(data)
 
@@ -67,7 +67,7 @@ const Movies = () => {
         setSortedData(sorting);
       }
     }
-  }, [isLoading, sortBtn, selectGenreBtn]);
+  }, [isLoading, sortBtn, selectGenreBtn,page]);
 
   const handlePageClick = ({ selected }) => {
     console.log("selected", selected);
