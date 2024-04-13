@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import Alert from "react-bootstrap/Alert";
 import './Banner.style.css';
+import Spinner from "react-bootstrap/Spinner";
 
 const Banner = () => {
 
@@ -12,10 +13,10 @@ const Banner = () => {
   }
 
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
-  console.log("ddd", data);
+  // console.log("ddd", data);
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return <Spinner/>;
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
@@ -28,9 +29,9 @@ const Banner = () => {
   <h1 style={{fontWeight:'bolder'}}>{data?.results[0].title}</h1>
   {!viewAll
   ?
-  <p onClick={toggle}>{data?.results[0].overview.length>150 ? data?.results[0].overview.slice(0, 150) + '... (더보기)' : data?.results[0].overview}</p>
+  <div onClick={toggle}>{data?.results[0].overview.length>150 ? (<div>{data?.results[0].overview.slice(0, 150)}<span style={{ color: "red" }}> ...(더보기)</span></div>) : data?.results[0].overview}</div>
   :
-  <p onClick={toggle}>{data?.results[0].overview}</p>
+  <div onClick={toggle}>{data?.results[0].overview}</div>
   }
 </div>
 

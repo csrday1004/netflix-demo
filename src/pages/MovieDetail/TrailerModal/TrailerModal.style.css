@@ -1,0 +1,35 @@
+.tailer-modal-bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.753);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.tailer-modal{
+  width: 90%;
+  max-width: 1080px;
+  border-radius: 10px;
+  background: black;
+  color: black;
+  padding: 20px;
+
+}
+
+
+.close-btn{
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  margin:20px;
+  background: red;
+  color: white;
+}
+.close-btn:hover{
+  background: rgba(255, 0, 0, 0.79);
+}

@@ -1,0 +1,166 @@
+.detail-box{
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.poster{
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+}
+
+.view-trailer{
+  text-align: center;
+  background: red;
+  border-radius: 8px;
+  margin: 8px;
+  padding: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.view-trailer:hover{
+  background-color: rgba(255, 0, 0, 0.644);
+}
+
+.view-trailer.not-yet{
+  background: grey;
+  pointer-events: none;
+}
+
+
+.title{
+  font-size: xx-large;
+}
+
+.tagline{
+  font-size: large;
+}
+
+
+.badge{
+  min-width: 50px;
+  text-align: center;
+  background: red;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.badge-data{
+  padding: 8px;
+  display: flex;
+  gap: 5px;
+}
+
+.detail-info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.genre-box{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.short-info{
+  display:flex;
+  gap: 10px;
+}
+
+.more-data{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recommend-container{
+  /* width: 100vw; */
+  left: 0;
+}
+
+.section{
+  font-size: large;
+  text-align: left;
+  padding: 8px;
+  border-top: 1px solid  white;
+}
+
+
+.overview{
+  padding : 15px 0px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.overview p{
+  margin: 0;
+}
+
+
+.reviews{
+  padding-top:20px;
+  padding-bottom: 20px;
+}
+
+.each-review{
+  display: flex;
+  flex-direction: column;
+  padding:20px;
+  border-bottom: 1px solid white;
+}
+
+.profile{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.avatar-image{
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.content{
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  
+  .detail-box{
+    height: 600px;
+    display: flex;
+    gap: 30px;
+  }
+  
+  .each-review{
+    flex-direction: row;
+  }
+  .poster{
+    min-width: 30%;
+    height: 100%;
+    background-position: center;
+  }
+  .more-data{
+    flex-direction: column;
+  }
+
+  .profile{
+    flex-direction: column;
+    text-align: center;
+    width:100px;
+    margin-right: 30px;
+  }
+  .avatar-image{
+    width: 100px;
+    height: 100px;
+  }
+  
+}

@@ -3,12 +3,13 @@ import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import Alert from "react-bootstrap/Alert";
 import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsive } from "../../../../constants/responsive";
+import Spinner from "react-bootstrap/Spinner";
 
 const PopularMovieSlide = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return <Spinner/>;
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
@@ -20,6 +21,7 @@ const PopularMovieSlide = () => {
         title="Popular Movies"
         movies={data.results}
         responsive={responsive}
+        rating={true}
       />
     </div>
   );

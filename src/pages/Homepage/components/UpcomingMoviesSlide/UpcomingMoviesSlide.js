@@ -3,12 +3,12 @@ import Alert from "react-bootstrap/Alert";
 import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsive } from "../../../../constants/responsive";
 import { useUpcomingMoviesQuery } from "../../../../hooks/useUpcomingMovies";
-
+import Spinner from "react-bootstrap/Spinner";
 const UpcomingMoviesSlide = () => {
   const { data, isLoading, isError, error } = useUpcomingMoviesQuery();
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return <Spinner/>;
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
@@ -20,6 +20,7 @@ const UpcomingMoviesSlide = () => {
         title="Upcoming Movies"
         movies={data.results}
         responsive={responsive}
+        rating={false}
       />
     </div>
   );

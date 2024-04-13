@@ -2,8 +2,13 @@ import React from "react";
 import Badge from "react-bootstrap/Badge";
 import "./MovieCard.style.css";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
+import { useNavigate } from 'react-router-dom';
+
 
 const MovieCard = ({ movie, index }) => {
+  console.log('무비카드에서 받은 값들', movie)
+  const navigate = useNavigate()
+
   const { data: genreData } = useMovieGenreQuery();
   // console.log(genreData)
   //Array(19)
@@ -25,16 +30,21 @@ const MovieCard = ({ movie, index }) => {
     return genreNameList;
   };
 
+  const goDetail = () => {
+    navigate(`/movies/${movie.id}`)
+  };
+
   return (
     <div
+      onClick={()=>{goDetail()}}
       className="movie-card"
       style={{
-        backgroundImage: `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${movie.poster_path})`,
+        backgroundImage:`url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${movie.poster_path})`,
         backgroundSize: "cover",
       }}
     >
       <div className="overlay">
-        {index? <div>{index + 1}위</div> : <div></div>}
+        {index ? <div>{index + 1}위</div> : <div></div>}
         <div>{movie.title}</div>
         <div>{Number(movie.vote_average).toFixed(1)}/10점</div>
         <div>{movie.popularity}</div>
