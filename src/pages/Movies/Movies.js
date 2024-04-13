@@ -70,7 +70,7 @@ const Movies = () => {
   }, [isLoading, sortBtn, selectGenreBtn,page]);
 
   const handlePageClick = ({ selected }) => {
-    console.log("selected", selected);
+    // console.log("selected", selected);
     setPage(selected + 1);
   };
 

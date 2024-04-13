@@ -18,12 +18,48 @@
   margin: 20px;
 }
 
+ul {
+  list-style: none; /* 기본 목록 마커 제거 */
+  padding: 0; /* 내부 패딩 제거 */
+  margin: 0; /* 외부 여백 제거 */
+  display: flex; /* Flexbox 레이아웃 사용 */
+}
 
-.active{
-  color: red;
+ul li {
+  flex: 1; /* 모든 <li> 요소가 동일한 공간을 차지하도록 설정 */
 }
 
 
+.pagination {
+  width: 100% !important;
+  margin: auto !important;
+  padding: 0 !important;
+}
+
+
+.page-link {
+  background-color: black !important;
+  border: 1px solid red !important;
+  color: red !important;
+  flex : 1 !important;
+}
+
+.page-link:hover{
+  background-color: red !important;
+  color: white !important;
+}
+
+.page-item.active > .page-link{
+  background-color: red !important;
+  color: white !important;
+}
+
+.page-link {
+  background-color: black !important;
+  border: 1px solid red !important;
+  color: red !important;
+  flex : 1 !important;
+}
 @media (min-width: 768px) {
 
 }
