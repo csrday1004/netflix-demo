@@ -85,7 +85,7 @@ const MovieDetail = () => {
     }
 
     window.scrollTo(0, 0);
-    
+
   }, [movie_id, isLoading, trailerDataIsLoading, recommendDataIsLoading]);
 
   // console.log('트레일러 키', trailerKey)
@@ -105,7 +105,6 @@ const MovieDetail = () => {
           variant="danger"
           style={{ width: "5rem", height: "5rem" }}
         />
-        ;
       </div>
     );
   }

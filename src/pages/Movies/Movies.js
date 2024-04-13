@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import { useSearchParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import MovieCard from "../../common/MovieCard/MovieCard";
 import ReactPaginate from "react-paginate";
+import Button from "react-bootstrap/Button";
 
 // 경로 2가지
 // navbar에서 클릭해 온 경우 => popular Movie들 보여주기
@@ -22,13 +23,34 @@ const Movies = () => {
   const [query, setQuery] = useSearchParams();
   const keyword = query.get("q");
   const [page, setPage] = useState(1);
+  const [sortedData, setSortedData] = useState([]);
+  const [sortBtn, setSortBtn] = useState(localStorage.getItem("sortState") !== "false");
+
   const { data, isLoading, isError, error } = useSearchMovieQuery({
     keyword,
     page,
   });
-  
+  // console.log(data)
+
+  useEffect(() => {
+    // 정렬 설정
+    if (!isLoading) {
+      if (sortBtn) {
+        const sorting = [...data.results].sort(
+          (a, b) => b.popularity - a.popularity
+        );
+        setSortedData(sorting);
+      } else {
+        const sorting = [...data.results].sort(
+          (a, b) => a.popularity - b.popularity
+        );
+        setSortedData(sorting);
+      }
+    }
+  }, [isLoading, sortBtn]);
+
   const handlePageClick = ({ selected }) => {
-    console.log('selected',selected)
+    console.log("selected", selected);
     setPage(selected + 1);
   };
 
@@ -42,7 +64,6 @@ const Movies = () => {
           variant="danger"
           style={{ width: "5rem", height: "5rem" }}
         />
-        ;
       </div>
     );
   }
@@ -52,18 +73,52 @@ const Movies = () => {
   return (
     <Container>
       <Row>
-        <Col lg={4} xs={12}>
-          필터
+        <Col className="p-5" lg={5} xs={12}>
+          <div
+            className="정렬하기"
+            style={{ display: "flex", gap: "10px", justifyContent: "center" }}
+          >
+            <Button
+              onClick={() => {
+                localStorage.setItem("sortState", true);
+                setSortBtn(true);
+              }}
+              variant={sortBtn ? "danger" : "outline-danger"}
+            >
+              재미순
+            </Button>
+            <Button
+              onClick={() => {
+                localStorage.setItem("sortState", false);
+                setSortBtn(false);
+              }}
+              variant={!sortBtn ? "danger" : "outline-danger"}
+            >
+              노잼순
+            </Button>
+          </div>
+          <div className="장르필터"></div>
         </Col>
-        <Col lg={8} xs={12}>
-          <Row  className="mb-5">
-            {data?.results.map((movie, index) => {
-              return (
-                <Col xs={4} key={index}>
-                  <MovieCard movie={movie} index={false} />
-                </Col>
-              );
-            })}
+        <Col
+          className=""
+          lg={7}
+          xs={12}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <Row className="mb-5">
+            {(sortedData.length > 0 ? sortedData : data?.results).map(
+              (movie, index) => {
+                return (
+                  <Col className="mb-4" xs={4} key={index}>
+                    <MovieCard movie={movie} index={false} />
+                  </Col>
+                );
+              }
+            )}
           </Row>
           <Row className="p-4">
             <ReactPaginate
