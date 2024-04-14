@@ -46,6 +46,7 @@ const Movies = () => {
     keyword,
     page,
   });
+  console.log(data)
 
   const { data: genres } = useMovieGenreQuery();
   // console.log(genres);
@@ -67,7 +68,7 @@ const Movies = () => {
         setSortedData(sorting);
       }
     }
-  }, [isLoading, sortBtn, selectGenreBtn,page]);
+  }, [isLoading, sortBtn, selectGenreBtn, page,query]);
 
   const handlePageClick = ({ selected }) => {
     // console.log("selected", selected);
@@ -202,7 +203,7 @@ const Movies = () => {
               onPageChange={handlePageClick}
               pageRangeDisplayed={2}
               marginPagesDisplayed={1}
-              pageCount={data?.total_pages} //전체페이지 수
+              pageCount={data.total_pages} //전체페이지 수
               previousLabel="<pre"
               pageClassName="page-item"
               pageLinkClassName="page-link"
