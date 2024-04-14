@@ -8,7 +8,7 @@ const UpcomingMoviesSlide = () => {
   const { data, isLoading, isError, error } = useUpcomingMoviesQuery();
 
   if (isLoading) {
-    return <Spinner/>;
+    return ;
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;

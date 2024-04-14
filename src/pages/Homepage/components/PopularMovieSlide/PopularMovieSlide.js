@@ -9,7 +9,7 @@ const PopularMovieSlide = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
 
   if (isLoading) {
-    return <Spinner/>;
+    return;
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;

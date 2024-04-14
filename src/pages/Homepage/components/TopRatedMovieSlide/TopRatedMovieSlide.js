@@ -8,7 +8,7 @@ const TopRatedMovieSlide = () => {
   const { data, isLoading, isError, error } = useTopRatedMoviesQuery();
 
   if (isLoading) {
-    return <Spinner/>;
+    return ;
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
