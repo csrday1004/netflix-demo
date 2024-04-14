@@ -37,6 +37,9 @@
 @media (min-width: 768px) {
   .banner{
     justify-content: left;
-    align-items: center;
+    /* text-align: left; */
+  }
+  .banner-text-area div{
+    text-align: left;
   }
 }
